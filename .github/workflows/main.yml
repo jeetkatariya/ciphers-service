@@ -19,7 +19,8 @@ jobs:
         
         - name: Unit Testing
           run: |
-            python manage.py test
+            cd ciphers_project
+            python3 manage.py test
         - name: Build and push the image
           run: |
             docker login --username jeetkatariya --password ${{secrets.ACCESS_TOKEN}} ghcr.io
