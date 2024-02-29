@@ -1,4 +1,4 @@
-name: Run the Tests
+name: Run the Tests, Build the image
 on:
   push
 
@@ -20,3 +20,9 @@ jobs:
         - name: Unit Testing
           run: |
             python manage.py test
+        - name: Build and push the image
+          run: |
+            docker login --username jeetkatariya --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+            docker build -t ghcr.io/jeetkatariya/ciphers-service:latest --file Dockerfile .
+            docker push ghcr.io/jeetkatariya/ciphers-service:latest
+          
